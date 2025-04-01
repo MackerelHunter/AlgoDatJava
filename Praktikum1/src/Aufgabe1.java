@@ -2,6 +2,11 @@
 public class Aufgabe1 {
 	
 	public static void main(String[] args) {
+		
+		System.out.println(multLikePeasant(5,5));
+	}
+	
+	public static void diverseTests() {
 		System.out.println(pow(10, 2));
 		for (int i = 0; i <= 32; i++) {
 			//System.out.println(pow(2,i));
@@ -13,6 +18,9 @@ public class Aufgabe1 {
 			testArray[i] = (int) (Math.random()*101);
 			//System.out.print(testArray[i]);
 		}
+	}
+	
+	public static void arrayTest() {
 		System.out.println(arraySum(testArray));
 		float[] polyTestArray = {1,1,2,1,2,1};
 		int polyTestVariable = 2;
@@ -80,4 +88,20 @@ public class Aufgabe1 {
 //		char c = binString.charAt(0); // first character
 //		long result = 1;
 //	}
+	
+	public static long multLikePeasant(int base, int exponent) {
+		if (exponent == 0) return 1;
+		long result = 1;
+		while (exponent > 0) {
+			if((exponent%2)!=0) {
+				result *= base;
+			}
+			base = (int) Math.pow(base, 2);
+			exponent /= 2;
+		}
+		return result;
+	}
+
 }
+
+
