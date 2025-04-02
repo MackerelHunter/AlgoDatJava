@@ -20,15 +20,14 @@ public class HanoiCourseImplementation extends HanoiServiceProvider {
 
 		// TODO implement a recursive algorithm to shift all disks
 		// from tower a to tower c using b as temporarily storage
-		
 		// use method "moveRing" from class HanoiServiceProvider
 		
-		if (n == 1) {
+		if (n == 0) {
 			moveRing(a, b);
 		} else {
 			hanoi(n-1, a, c, b);
 			moveRing(a, c);
-			hanoi(n-1, b, c, a);
+			hanoi(n-1, b, a, c);
 		}
 		
 	}
