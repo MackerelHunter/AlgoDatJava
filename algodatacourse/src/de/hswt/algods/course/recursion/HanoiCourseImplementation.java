@@ -22,12 +22,12 @@ public class HanoiCourseImplementation extends HanoiServiceProvider {
 		// from tower a to tower c using b as temporarily storage
 		// use method "moveRing" from class HanoiServiceProvider
 		
-		if (n == 0) {
-			moveRing(a, b);
-		} else {
+		if (n > 0) {
 			hanoi(n-1, a, c, b);
 			moveRing(a, c);
 			hanoi(n-1, b, a, c);
+		} else {
+			moveRing(a, b);
 		}
 		
 	}
