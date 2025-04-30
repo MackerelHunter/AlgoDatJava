@@ -2,6 +2,7 @@ package de.hswt.algods.course.stack;
 
 import de.hswt.algods.datastructures.Stack;
 import de.hswt.algods.stackdna.core.DNA;
+import java.lang.StringBuilder;
 
 public class DNAImpl implements DNA {
 
@@ -47,9 +48,9 @@ public class DNAImpl implements DNA {
 	public Stack<Character> stringToStack(String original) {
 		int size = original.length();
 		Stack<Character> stack = new ArrayStack<Character>(size);
-		
-		// TODO Füllen Sie den Stack mit der Sequenz.
-		
+		for (int i = 0; i < size; i++) {
+			stack.push(original.charAt(i));
+		}
 		return stack;
 	}
 
@@ -60,11 +61,16 @@ public class DNAImpl implements DNA {
 	 */
 	@Override
 	public String reverseComplement(String original) {
-		original = original.toUpperCase();
+		original = original.toLowerCase();
+		original.replaceAll("[^acgt]", "?");
 		Stack<Character> stack = stringToStack(original);
-		
-		// TODO Nutzen Sie den Stack um das reverse Complement der Sequenz zu berechnen
-		
-		return null;
+		String legend = "acgt?TGCA?";
+		StringBuilder sb = new StringBuilder();
+		while (!stack.isEmpty()) {
+			char tmp = legend.charAt(legend.indexOf(stack.top())+5);
+			sb.append(tmp);
+			stack.pop();
+		}
+		return sb.toString();
 	}
 }

@@ -38,12 +38,20 @@ public class ArrayStackTest extends TestCase {
 		assertEquals(top,'b');
 
 		//--- Testfall 4: pop(push(s,x)) = s
-
-		// TODO <implement test case 4>
+		
+		ArrayStack<Character> oldStack4 = stack.clone(); // wir müssen uns den Stack irgendwie merken, aber die Referenz zu kopieren, reicht nicht
+		stack.push('x');
+		stack.pop();
+		//jetzt sollte inhaltlich der stack dem oldstack entsprechen
+		assertTrue(stack.equals(oldStack4));
 
 		//--- Testfall 5: push(pop(s),top(s)) = s
 
-		// TODO <implement test case 5>
+		ArrayStack<Character> oldStack5 = stack.clone();
+		Character tempElement = stack.top();
+		stack.pop();
+		stack.push(tempElement);;
+		assertTrue(stack.equals(oldStack5));
 
 	}
 }
