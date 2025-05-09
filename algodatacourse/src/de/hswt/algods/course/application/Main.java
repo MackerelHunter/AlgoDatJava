@@ -17,3 +17,4 @@ public class Main {
 		de.hswt.atp.core.application.Main.main(args);
 	}
 }
+
