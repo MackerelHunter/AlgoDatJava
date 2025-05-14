@@ -63,7 +63,7 @@ extends ArithmeticMachineServiceProvider {
 
 	@Override
 	public boolean checkExpression() {
-		Stack<Character> stack = new ArrayStack<Character>();
+		Stack<Character> stack = new ListStack<Character>();
 		for (int i = 0; i < infix.length(); i++) {
 			char c = infix.charAt(i);
 			switch (c) {
@@ -82,7 +82,7 @@ extends ArithmeticMachineServiceProvider {
 	@SuppressWarnings("fallthrough")
 	public String toPostfix() {
 		StringBuffer result = new StringBuffer();
-		Stack<Character> stack = new ArrayStack<Character>();
+		Stack<Character> stack = new ListStack<Character>();
 		for (int i = 0; i < infix.length(); i++) {
 			Character c = infix.charAt(i);
 			if (Character.isDigit(c)) {
@@ -100,7 +100,7 @@ extends ArithmeticMachineServiceProvider {
 
 	@Override
 	public int evaluateExpression(String postfix) { //Zeichen müssen in Zahlenwerte umgewandelt werden
-		Stack<Integer> stack = new ArrayStack<Integer>();
+		Stack<Integer> stack = new ListStack<Integer>();
 		int value1, value2;
 		for (int i = 0; i < postfix.length(); i++) {
 			Character c = postfix.charAt(i);

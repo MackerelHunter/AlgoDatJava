@@ -23,31 +23,21 @@ public class ListNode<T> implements ListElement<T, ListNode<T>> {
 	
 	@Override
 	public ListNode<T> getNext() {
-
-		// TODO <implement>
-
-		return null; // change this to an appropriate value
+		return next;
 	}
 	
 	@Override
 	public void setNext(ListNode<T> elem) {
-		
-		// TODO <implement>
-
+		next = elem;
 	}
 
 	@Override
 	public void setData(T aData) {
-	
-		// TODO <implement>
-
+		data = aData;
 	}
 
 	@Override
 	public T getData() {
-
-		// TODO <implement>
-
-		return null; // change this to an appropriate value
+		return data;
 	}
 }
