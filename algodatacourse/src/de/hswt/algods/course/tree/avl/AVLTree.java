@@ -32,10 +32,11 @@ public class AVLTree extends AbstractAVLTree<Integer> {
 			waitForRotation("Right rotation at " + n.getElement());
 
 			// Rotationsalgorithmus
+			// der Knoten, auf den tmp zeigt, soll die neue Wurzel werden
 			AVLNode<Integer> tmp = n.getLeft();
 			n.setLeft(n.getLeft().getRight());
 			tmp.setRight(n);
-
+			return tmp;
 		}
 		return null;
 
@@ -51,8 +52,17 @@ public class AVLTree extends AbstractAVLTree<Integer> {
 	protected AVLNode<Integer> rotateLeft(AVLNode<Integer> n) {
 		if (n != null) {
 			// Pause fuer die Animation (mit entsprechender Nachricht)
-			waitForRotation("Right rotation at " + n.getElement());
-
+			waitForRotation("Left rotation at " + n.getElement());
+			
+			//Rotationsalgorithmus
+			// der Knoten, auf den tmp zeigt, soll neue Wurzel werden
+			AVLNode<Integer> tmp = n.getRight();
+			// Wir lassen n auf den linken Nachfolger von tmp zeigen
+			n.setRight(n.getRight().getLeft());
+			// jetzt soll tmps linker Nachfolger n werden
+			tmp.setLeft(n);
+			// Wir geben den Zeiger tmp zurück
+			return tmp;
 		}
 		return null;
 	}
@@ -74,6 +84,7 @@ public class AVLTree extends AbstractAVLTree<Integer> {
 		else {
 			if (value < node.getElement()) {
 				// links einf�gen
+				// Wir rufen wieder insert() auf mit dem linken Nachfolger des bisherigen Knotens als Parameter und dem Wert
 				node.setLeft(insert(node.getLeft(), value));
 
 				// ueberpruefen ob Rotation notwendig
@@ -83,12 +94,31 @@ public class AVLTree extends AbstractAVLTree<Integer> {
 						node = rotateRight(node);
 					} else {
 						// Links-Rechts-Rotation
-						// ... to do
+						/*
+						 * Wir müssen unbedingt den neuen Nachfolger von node nach der Rotation setzen,
+						 * sonst zeigt node dann stattdessen auf den Nachfolger von seinem Nachfolger
+						 */
+						node.setLeft(rotateLeft(node.getLeft()));
+						node = rotateRight(node);
+								
+						
 					}
 				}
-			} else {
+			} else { // Wenn der Wert größer als der Wert vom derzeitigen Knoten ist
 				// rechts einf�gen
-				// ... to do
+				node.setRight(insert(node.getRight(), value));
+				
+				// ueberpruefen ob Rotation notwendig
+				if (node.getBalance() == -2) {
+					if (value > node.getRight().getElement()) {
+						// Links-Rotation
+						node = rotateLeft(node);
+					} else {
+						// Rechts-Links-Rotation
+						node.setRight(rotateRight(node.getRight()));
+						node = rotateLeft(node);
+					}
+				}
 			}
 
 		}

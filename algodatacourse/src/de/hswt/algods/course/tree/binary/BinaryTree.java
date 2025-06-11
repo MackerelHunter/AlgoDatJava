@@ -18,18 +18,37 @@ public class BinaryTree<T extends Comparable<T>> extends AbstractBinaryTree<T> {
 	 */
 	@Override
 	public boolean insert(T value) {
-		
 		BinaryTreeNode<T> parent = null;
 		BinaryTreeNode<T> child = this.getRoot();
 
 		if (value == null) {
 			return false;
 		}
-		
-		// TODO implement me!		
-		return true;
+		// laufe zum Blatt, wo eingefügt werden soll
+		while (child != null) {
+			parent = child;
+			if (value.compareTo(child.getElement()) == 0) {
+				return false;
+			} else {
+				if (value.compareTo(child.getElement()) < 0) {
+					child = child.getLeft();
+				} else {
+					child = child.getRight();
+				}
+			}
+		}
+		if (parent == null) {
+			setRoot(new BinaryTreeNode<T>(value));
+		} else {
+			if (value.compareTo(parent.getElement()) < 0) {
+				parent.setLeft(new BinaryTreeNode<T>(value));
+			} else {
+				parent.setRight(new BinaryTreeNode<T>(value));
+			}
+		}
+		return true;	
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -39,7 +58,7 @@ public class BinaryTree<T extends Comparable<T>> extends AbstractBinaryTree<T> {
 	public BinaryTree<T> getLeft() {
 		return (BinaryTree<T>)super.getLeft(); 
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 

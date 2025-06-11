@@ -16,7 +16,6 @@ import de.hswt.atp.core.annotations.ServiceImplementation;
 @ServiceImplementation(id = "de.hswt.algo.tree.traversing.course.TraversityCourseImplementation", name = "Course implementation", position = 1)
 public class TraversityCourseImplementation extends
 		TreeTraversingServiceProvider {
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -51,8 +50,10 @@ public class TraversityCourseImplementation extends
 	 */
 	@Override
 	protected void inOrder(AbstractBinaryTree<Integer> node) {
-		if (!(node == null)) {
-			// TODO
+		if (node != null && node.getRoot() != null ) {
+			inOrder(node.getLeft());
+			checkNode(node.getRoot());
+			inOrder(node.getRight());			
 		}
 	}
 
@@ -65,8 +66,10 @@ public class TraversityCourseImplementation extends
 	 */
 	@Override
 	protected void preOrder(AbstractBinaryTree<Integer> node) {
-		if (!(node == null)) {
-			// TODO
+		if (node != null && node.getRoot() != null ) {
+			checkNode(node.getRoot());
+			preOrder(node.getLeft());
+			preOrder(node.getRight());		
 		}
 	}
 
@@ -79,8 +82,10 @@ public class TraversityCourseImplementation extends
 	 */
 	@Override
 	protected void postOrder(AbstractBinaryTree<Integer> node) {
-		if (!(node == null)) {
-			// TODO
+		if (node != null && node.getRoot() != null ) {
+			postOrder(node.getLeft());
+			postOrder(node.getRight());
+			checkNode(node.getRoot());
 		}
 	}
 
